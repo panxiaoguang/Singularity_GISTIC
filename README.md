@@ -18,5 +18,5 @@ first download the image from release page or build it locally using above comma
 then run the image using singularity.
 
 ```bash
-singularity exec Gistic2.sif gp_gistic2_from_seg --help
+singularity exec Gistic2.sif gistic2 --help
 ```
