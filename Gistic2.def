@@ -15,7 +15,6 @@ From: ubuntu:20.04
 	mkdir -p /home/gistic/
 	cd /home/gistic && wget ftp://ftp.broadinstitute.org/pub/GISTIC2.0/GISTIC_2_0_23.tar.gz && tar xvf GISTIC_2_0_23.tar.gz && rm -rf GISTIC_2_0_23.tar.gz
 	cd /home/gistic/MCRInstaller/ && unzip MCRInstaller.zip && rm -rf MCRInstaller.zip && /home/gistic/MCRInstaller/install -mode silent -agreeToLicense yes && cp gp_gistic2_from_seg /usr/local/bin/ && cp gistic2 /usr/local/bin/
-	chmod a+x /usr/local/bin/runMatlab.sh
 	apt-get autoremove -y
 	apt-get clean
 	
