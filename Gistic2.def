@@ -14,7 +14,7 @@ From: ubuntu:20.04
 	wget https://apt.ligo-wa.caltech.edu:8443/debian/pool/stretch/libxp6/libxp6_1.0.2-2_amd64.deb && dpkg -i libxp6_1.0.2-2_amd64.deb && rm libxp6_1.0.2-2_amd64.deb
 	mkdir -p /home/gistic/
 	cd /home/gistic && wget ftp://ftp.broadinstitute.org/pub/GISTIC2.0/GISTIC_2_0_23.tar.gz && tar xvf GISTIC_2_0_23.tar.gz && rm -rf GISTIC_2_0_23.tar.gz
-	cd /home/gistic/MCR_Installer/ && unzip MCRInstaller.zip && rm -rf MCRInstaller.zip && /home/gistic/MCR_Installer/install -mode silent -agreeToLicense yes && cp /home/gistic/gp_gistic2_from_seg /usr/local/bin/gp_gistic2_from_seg && cp /home/gistic/gistic2 /usr/local/bin/gistic2
+	cd /home/gistic/MCR_Installer/ && unzip MCRInstaller.zip && rm -rf MCRInstaller.zip && /home/gistic/MCR_Installer/install -mode silent -agreeToLicense yes && cp /home/gistic/gp_gistic2_from_seg /usr/local/bin/gp_gistic2_from_seg
 	apt-get autoremove -y
 	apt-get clean
 	
