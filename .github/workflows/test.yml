@@ -11,10 +11,9 @@ jobs:
         uses: actions/checkout@v4
       - name: compute new tag
         id: compute_tag
-        uses: craig-day/compute-tag@v15
+        uses: craig-day/compute-tag@v18
         with:
           github_token: ${{ github.token }}
           version_type: patch
-          version_scheme: continuous
       - name: final check
         run: echo ${{ steps.compute_tag.outputs.next_tag }}
