@@ -1,4 +1,4 @@
-name: singularity-deploy
+name: test auto tag
 
 on: 
   workflow_dispatch
