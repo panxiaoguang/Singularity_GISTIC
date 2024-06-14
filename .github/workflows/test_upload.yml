@@ -1,0 +1,25 @@
+name: test_upload
+
+on: 
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: compute new tag
+        id: compute_tag
+        uses: craig-day/compute-tag@v18
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          version_type: patch
+      - name: upload final image to release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.compute_tag.outputs.next_tag }}
+          tag_name: ${{ steps.compute_tag.outputs.next_tag }}
+          files: Gistic2.def
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
