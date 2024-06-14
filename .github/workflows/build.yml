@@ -1,10 +1,12 @@
-name: singularity-deploy
+name: Apptainer-deploy
 
 on: 
   workflow_dispatch
 
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,7 +21,7 @@ jobs:
         id: compute_tag
         uses: craig-day/compute-tag@v18
         with:
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           version_type: patch
       - name: upload final image to release
         uses: softprops/action-gh-release@v2
@@ -28,4 +30,4 @@ jobs:
           tag_name: ${{ steps.compute_tag.outputs.next_tag }}
           files: Gistic2.sif
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
