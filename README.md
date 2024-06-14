@@ -20,3 +20,11 @@ then run the image using singularity.
 ```bash
 singularity exec Gistic2.sif gistic2 --help
 ```
+
+## Note: 
+If you meet a situation of losing some dependencies, please use `--cleanenv` to exec singularity, like:
+
+```bash
+singularity exec --cleanenv Gistic2.sif gistic2 --help
+```
+
