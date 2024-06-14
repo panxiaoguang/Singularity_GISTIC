@@ -17,7 +17,7 @@ jobs:
         run:  apptainer build -f Gistic2.sif ./Gistic2.def
       - name: compute new tag
         id: compute_tag
-        uses: craig-day/compute-tag@v15
+        uses: craig-day/compute-tag@v18
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           version_type: patch
