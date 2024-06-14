@@ -4,43 +4,18 @@ on:
   workflow_dispatch
 
 jobs:
-  release:
-    permissions: write-all
-    name: Create Release
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Define Repository Name and Release Version
-        run: |
-            release=$(cat VERSION)
-            echo "release_tag=$release" >> $GITHUB_ENV
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.release_tag }}
-          release_name: Release ${{ env.release_tag }}
-          draft: false
-          prerelease: false
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Apptainer
       - uses: eWaterCycle/setup-apptainer@v2
         with:
-          apptainer-version: 1.2.0
-      - name: Build the singularity container
-        run: |
-            git clone https://github.com/panxiaoguang/Singularity_GISTIC.git
-            cd Singularity_GISTIC
-            apptainer build --fakeroot Gistic2.sif Gistic2.def
-            echo "Successfully built container Gistic2.sif."                
-            mv Gistic2.sif ../
-            cd ..
-      - name: Upload Release Assets
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          tag_name: ${{ env.release_tag }}
-        run: |
-             sudo apt-get update && sudo apt-get install -y hub
-             hub release edit $(find . -type f -name "*.sif" -printf "-a %p ") -m "" "$tag_name" 
+          apptainer-version: 1.3.2
+      - name: Build the Apptainer container
+        run:  apptainer build -f Gistic2.sif ./Gistic2.def
+      - name: upload final image to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Gistic2.sif
