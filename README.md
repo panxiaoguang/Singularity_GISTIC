@@ -1,4 +1,5 @@
 # Singularity_GISTIC
+[![Apptainer-deploy](https://github.com/panxiaoguang/Singularity_GISTIC/actions/workflows/build.yml/badge.svg)](https://github.com/panxiaoguang/Singularity_GISTIC/actions/workflows/build.yml)
  Build Gistic2 apptainer image using Github Action
 
 ## Usage
